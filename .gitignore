@@ -1,0 +1,5 @@
+.*.swp
+*.json
+mdjson.tex
+*.aux
+*.log

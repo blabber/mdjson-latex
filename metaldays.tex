@@ -1,0 +1,68 @@
+% "THE BEER-WARE LICENSE" (Revision 42):
+% <tobias.rehbein@web.de> wrote this file. As long as you retain this notice
+% you can do whatever you want with this stuff. If we meet some day, and you
+% think this stuff is worth it, you can buy me a beer in return.
+%                                                             Tobias Rehbein
+
+\documentclass[a4paper,landscape,10pt]{article}
+% A4 - 297x210mm
+\usepackage[hmargin=0.35cm,vmargin=0.5cm]{geometry}
+\usepackage{tikz}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{setspace}
+\usepackage{setspace}
+\usepackage{charter}
+
+\pagestyle{empty}
+
+\setstretch{0.7}
+
+\begin{document}
+\begin{tikzpicture}
+
+%\draw [draw=green] (0,0.6) rectangle (28,-19);
+%
+%\draw [draw=red] (0,0) rectangle (5.4,-19);
+%\draw [draw=red] (5.65,0) rectangle (11.05,-19);
+%\draw [draw=red] (11.3,0) rectangle (16.7,-19);
+%\draw [draw=red] (16.95,0) rectangle (22.35,-19);
+%\draw [draw=red] (22.6,0) rectangle (28,-19);
+
+%day - 5.4
+%stage - 2.7
+%daysep - 0.25
+%dayheight - 19
+
+\node  at (2.7,0.6) {\small{}Monday, 23.07.};
+\node  at (1.35,0.25) {\footnotesize{}Main Stage};
+\node  at (4.05,0.25) {\footnotesize{}Second Stage};
+
+\draw (5.525,0.6) -- (5.525,-19);
+
+\node  at (8.35,0.6) {\small{}Tuesday, 24.07.};
+\node  at (7,0.25) {\footnotesize{}Main Stage};
+\node  at (9.7,0.25) {\footnotesize{}Second Stage};
+
+\draw (11.175,0.6) -- (11.175,-19);
+
+\node  at (14,0.6) {\small{}Wednesday, 25.07.};
+\node  at (12.65,0.25) {\footnotesize{}Main Stage};
+\node  at (15.35,0.25) {\footnotesize{}Second Stage};
+
+\draw (16.825,0.6) -- (16.825,-19);
+
+\node  at (19.65,0.6) {\small{}Thursday, 26.07.};
+\node  at (18.25,0.25) {\footnotesize{}Main Stage};
+\node  at (21,0.25) {\footnotesize{}Second Stage};
+
+\draw (22.475,0.6) -- (22.475,-19);
+
+\node  at (25.3,0.6) {\small{}Friday, 27.07.};
+\node  at (23.95,0.25) {\footnotesize{}Main Stage};
+\node  at (26.65,0.25) {\footnotesize{}Second Stage};
+
+\input{mdjson.tex}
+
+\end{tikzpicture}
+\end{document}
