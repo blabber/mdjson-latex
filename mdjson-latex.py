@@ -64,11 +64,11 @@ def timestamps_for_event(event):
 
     return (start, end)
 
-def get_time_range(data):
+def get_time_range(days):
     minTimestamp = 0
-    maxTimestamp = 0
+    maxTimestamp = 30
 
-    for d in data['days']:
+    for d in days:
         for s in d['stages']:
             start, end = timestamps_for_event(s['events'][0])
             if maxTimestamp == 0 or maxTimestamp < end:
@@ -80,14 +80,88 @@ def get_time_range(data):
 
     return (minTimestamp, maxTimestamp)
 
+def draw_box(event, x, dayOffset, lengthMinute, width, timesize, bandsize):
+    eStart, eEnd = timestamps_for_event(e)
+
+    eX1 = x
+    eY1 = (eStart - dayOffset) * lengthMinute
+    eX2 = x + width
+    eY2 = (eEnd - dayOffset) * lengthMinute
+
+    eXCenter = eX1 + (width / 2)
+    eYCenter = eY1 - ((eY1 - eY2) / 2)
+
+    drawing = ''
+    eDrawing = r'\draw ({0},{1}) rectangle ({2},{3});'.format(
+        eX1, eY1, eX2, eY2)
+    drawing = drawing + eDrawing + '\n'
+
+    eDrawing = r'\node at ({0},{1}) [text width = {2}cm, text centered] {{\{5}{{}}{3}\\\{6}{{}}{4}}};'.format(
+        eXCenter, eYCenter, width, e['time'],  e['label'], timesize, bandsize)
+    drawing = drawing + eDrawing + '\n'
+
+    return drawing
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Turn mdjson output into a latex fragment.')
-    parser.add_argument('--url', help='The mdjson url.', default='https://gist.githubusercontent.com/blabber/babc4803141b0ec13fd613cc84eae074/raw')
+    parser.add_argument('--url', help='The mdjson url.',
+        default='https://gist.githubusercontent.com/blabber/babc4803141b0ec13fd613cc84eae074/raw')
     args = parser.parse_args()
 
     data = load_data(args.url)['data']
+
+    # first two days
+    for di in range(0, 2):
+        d = data['days'][di]
+
+        dayOffset, dayMax = get_time_range(data['days'][0:2])
+
+        ltxDayHeight = 26.7
+        lengthMinute = ltxDayHeight / (dayMax - dayOffset)
+        lengthMinute = -lengthMinute
+
+        ltxDayWidth = 9.5
+        ltxDayPadding = 0.5
+
+        dayX = di * (ltxDayWidth + ltxDayPadding)
+
+        drawing = ''
+        for si in range(0, len(d['stages'])):
+            s = d['stages'][si]
+            for e in s['events']:
+                drawing = drawing + draw_box(
+                    e, dayX, dayOffset, lengthMinute, ltxDayWidth, "small", "large")
+
+        with open('mdjson-{0}.tex'.format(di), 'w') as f:
+            f.write(drawing)
+
+    # single days
+    for di in range(2, len(data['days'])):
+        d = data['days'][di]
+
+        dayOffset, dayMax = get_time_range([d])
+
+        ltxDayHeight = 26.7
+        lengthMinute = ltxDayHeight / (dayMax - dayOffset)
+        lengthMinute = -lengthMinute
+
+        ltxStageWidth = 6.5
+        ltxStagePadding = 0
+
+        drawing = ''
+        for si in range(0, len(d['stages'])):
+            stageX = si * (ltxStageWidth + ltxStagePadding)
+            s = d['stages'][si]
+            for e in s['events']:
+                drawing = drawing + draw_box(
+                    e, stageX, dayOffset, lengthMinute, ltxStageWidth, "small", "large")
+
+        with open('mdjson-{0}.tex'.format(di), 'w') as f:
+            f.write(drawing)
+
+    # overview
     remove_third_stage(data)
-    dayOffset, dayMax = get_time_range(data)
+    dayOffset, dayMax = get_time_range(data['days'])
 
     ltxDayHeight = 19
     lengthMinute = ltxDayHeight / (dayMax - dayOffset)
@@ -105,21 +179,8 @@ if __name__ == '__main__':
             stageX = dayX + (si * ltxStageWidth)
             s = d['stages'][si]
             for e in s['events']:
-                eStart, eEnd = timestamps_for_event(e)
-
-                eX1 = stageX
-                eY1 = (eStart - dayOffset) * lengthMinute
-                eX2 = stageX + ltxStageWidth
-                eY2 = (eEnd - dayOffset) * lengthMinute
-
-                eXCenter = eX1 + (ltxStageWidth / 2)
-                eYCenter = eY1 - ((eY1 - eY2) / 2)
-
-                eDrawing = '\\draw ({0},{1}) rectangle ({2},{3});\n'.format(eX1, eY1, eX2, eY2)
-                drawing = drawing + eDrawing
-
-                eDrawing = '\\node at ({0},{1}) [text width = {2}cm, text centered] {{\\tiny{{}}{3}\\\\\\footnotesize{{}}{4}}};\n'.format(eXCenter, eYCenter, ltxStageWidth, e['time'],  e['label'])
-                drawing = drawing + eDrawing
+                drawing = drawing + draw_box(
+                    e, stageX, dayOffset, lengthMinute, ltxStageWidth, "footnotesize", "small")
 
     with open('mdjson.tex', 'w') as f:
         f.write(drawing)

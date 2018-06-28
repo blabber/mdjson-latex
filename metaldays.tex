@@ -4,21 +4,22 @@
 % think this stuff is worth it, you can buy me a beer in return.
 %                                                             Tobias Rehbein
 
-\documentclass[a4paper,landscape,10pt]{article}
+\documentclass[a4paper,10pt]{article}
 % A4 - 297x210mm
 \usepackage[hmargin=0.35cm,vmargin=0.5cm]{geometry}
 \usepackage{tikz}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{setspace}
-\usepackage{setspace}
 \usepackage{charter}
+\usepackage{pdflscape}
 
 \pagestyle{empty}
 
+\begin{document}
+\begin{landscape}
 \setstretch{0.7}
 
-\begin{document}
 \begin{tikzpicture}
 
 %\draw [draw=green] (0,0.6) rectangle (28,-19);
@@ -34,35 +35,125 @@
 %daysep - 0.25
 %dayheight - 19
 
-\node  at (2.7,0.6) {\small{}Monday, 23.07.};
-\node  at (1.35,0.25) {\footnotesize{}Main Stage};
-\node  at (4.05,0.25) {\footnotesize{}Second Stage};
+\node at (2.7,0.6) {\small{}Monday, 23.07.};
+\node at (1.35,0.25) {\footnotesize{}Lemmy Stage};
+\node at (4.05,0.25) {\footnotesize{}Boško Bursać Stage};
 
 \draw (5.525,0.6) -- (5.525,-19);
 
-\node  at (8.35,0.6) {\small{}Tuesday, 24.07.};
-\node  at (7,0.25) {\footnotesize{}Main Stage};
-\node  at (9.7,0.25) {\footnotesize{}Second Stage};
+\node at (8.35,0.6) {\small{}Tuesday, 24.07.};
+\node at (7,0.25) {\footnotesize{}Lemmy Stage};
+\node at (9.7,0.25) {\footnotesize{}Boško Bursać Stage};
 
 \draw (11.175,0.6) -- (11.175,-19);
 
-\node  at (14,0.6) {\small{}Wednesday, 25.07.};
-\node  at (12.65,0.25) {\footnotesize{}Main Stage};
-\node  at (15.35,0.25) {\footnotesize{}Second Stage};
+\node at (14,0.6) {\small{}Wednesday, 25.07.};
+\node at (12.65,0.25) {\footnotesize{}Lemmy Stage};
+\node at (15.35,0.25) {\footnotesize{}Boško Bursać Stage};
 
 \draw (16.825,0.6) -- (16.825,-19);
 
-\node  at (19.65,0.6) {\small{}Thursday, 26.07.};
-\node  at (18.25,0.25) {\footnotesize{}Main Stage};
-\node  at (21,0.25) {\footnotesize{}Second Stage};
+\node at (19.65,0.6) {\small{}Thursday, 26.07.};
+\node at (18.25,0.25) {\footnotesize{}Lemmy Stage};
+\node at (21,0.25) {\footnotesize{}Boško Bursać Stage};
 
 \draw (22.475,0.6) -- (22.475,-19);
 
-\node  at (25.3,0.6) {\small{}Friday, 27.07.};
-\node  at (23.95,0.25) {\footnotesize{}Main Stage};
-\node  at (26.65,0.25) {\footnotesize{}Second Stage};
+\node at (25.3,0.6) {\small{}Friday, 27.07.};
+\node at (23.95,0.25) {\footnotesize{}Lemmy Stage};
+\node at (26.65,0.25) {\footnotesize{}Boško Bursać Stage};
 
 \input{mdjson.tex}
 
 \end{tikzpicture}
+
+\end{landscape}
+\setstretch{1}
+
+\begin{tikzpicture}
+
+%\draw [draw=green] (0,0.9) rectangle (19.5,-26.7);
+%
+%\draw [draw=red] (0,0) rectangle (9.5,-26.7);
+%\draw [draw=red] (10,0) rectangle (19.5,-26.7);
+
+%stage - 9.5
+%daysep - 0.5
+%dayheight - 26.7
+
+\node at (4.75,0.9) {\large{}Saturday, 21.07.};
+\node at (4.75,0.3) {\small{}Newforces Stage};
+\node at (14.75,0.9) {\large{}Sunday, 22.07.};
+\node at (14.75,0.3) {\small{}Newforces Stage};
+
+\input{mdjson-0.tex}
+\input{mdjson-1.tex}
+
+\end{tikzpicture}
+
+\begin{tikzpicture}
+
+%\draw [draw=green] (0,0.9) rectangle (19.5,-26.7);
+%
+%\draw [draw=red] (0,0) rectangle (6.5,-26.7);
+%\draw [draw=red] (6.5,0) rectangle (13,-26.7);
+%\draw [draw=red] (13,0) rectangle (19.5,-26.7);
+
+%stage - 6.5
+%daysep - 0
+%dayheight - 26.7
+
+\node at (9.75,0.9) {\large{}Monday, 23.07.};
+\node at (3.25,0.3) {\small{}Lemmy Stage};
+\node at (9.75,0.3) {\small{}Boško Bursać Stage};
+\node at (16.25,0.3) {\small{}Newforces Stage};
+
+\input{mdjson-2.tex}
+
+\end{tikzpicture}
+
+\begin{tikzpicture}
+
+\node at (9.75,0.9) {\large{}Tuesday, 24.07.};
+\node at (3.25,0.3) {\small{}Lemmy Stage};
+\node at (9.75,0.3) {\small{}Boško Bursać Stage};
+\node at (16.25,0.3) {\small{}Newforces Stage};
+
+\input{mdjson-3.tex}
+
+\end{tikzpicture}
+
+\begin{tikzpicture}
+
+\node at (9.75,0.9) {\large{}Wednesday, 25.07.};
+\node at (3.25,0.3) {\small{}Lemmy Stage};
+\node at (9.75,0.3) {\small{}Boško Bursać Stage};
+\node at (16.25,0.3) {\small{}Newforces Stage};
+
+\input{mdjson-4.tex}
+
+\end{tikzpicture}
+
+\begin{tikzpicture}
+
+\node at (9.75,0.9) {\large{}Thursday, 25.07.};
+\node at (3.25,0.3) {\small{}Lemmy Stage};
+\node at (9.75,0.3) {\small{}Boško Bursać Stage};
+\node at (16.25,0.3) {\small{}Newforces Stage};
+
+\input{mdjson-5.tex}
+
+\end{tikzpicture}
+
+\begin{tikzpicture}
+
+\node at (9.75,0.9) {\large{}Friday, 26.07.};
+\node at (3.25,0.3) {\small{}Lemmy Stage};
+\node at (9.75,0.3) {\small{}Boško Bursać Stage};
+\node at (16.25,0.3) {\small{}Newforces Stage};
+
+\input{mdjson-6.tex}
+
+\end{tikzpicture}
+
 \end{document}
