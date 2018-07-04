@@ -1,12 +1,13 @@
 mdjson-latex
 ============
 
-A script that turns [mdjson](https://github.com/blabber/mdjson) into a latex file, that typesets
-a timetable like running order.
+A script that turns [mdjson](https://github.com/blabber/mdjson) into a LaTeX
+file, that typesets a timetable like running order.
 
 Caveat
 ------
-To fit everything on one page, the Newforces Stage had to be removed from the running order.
+To fit everything on one page, the Newforces Stage had to be removed from the
+running order.
 
 Usage
 -----
