@@ -97,7 +97,8 @@ def draw_box(event, x, dayOffset, lengthMinute, width, timesize, bandsize):
     drawing = drawing + eDrawing + '\n'
 
     eDrawing = r'\node at ({0},{1}) [text width = {2}cm, text centered] {{\{5}{{}}{3}\\\{6}{{}}{4}}};'.format(
-        eXCenter, eYCenter, width, e['time'],  e['label'], timesize, bandsize)
+        eXCenter, eYCenter, width, e['time'],  e['label'].replace('&', '\&'),
+        timesize, bandsize)
     drawing = drawing + eDrawing + '\n'
 
     return drawing
